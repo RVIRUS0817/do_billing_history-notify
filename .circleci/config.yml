@@ -1,0 +1,54 @@
+version: 2.1
+orbs:
+  slack: circleci/slack@4.10.1
+
+references:
+default_config: &default_config
+  docker:
+    - image: golang:1.21.6
+  working_directory: ~/project
+
+commands:
+  slack-notify-fail:
+    description: "Slack notify fail"
+    steps:
+      - slack/notify:
+          channel: ci_cd
+          event: fail
+          template: basic_fail_1
+  slack-notify-success:
+    description: "Slack notify success"
+    steps:
+      - slack/notify:
+          channel: ci_cd
+          event: pass
+          template: basic_success_1
+
+jobs:
+  billing_run:
+    <<: *default_config
+    steps:
+    - checkout
+    - run:
+        name : update and install curl jq
+        command: |
+            apt-get update && apt-get install curl jq -y
+    - run:
+        name : DigitalOcean billing_run
+        command: |
+            go run ~/project/billing/main.go
+    - slack-notify-fail
+    - slack-notify-success
+
+workflows:
+  version: 2.1
+  cron_schedule:
+    triggers:
+      - schedule:
+          cron: "0 0 2 * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - billing_run
+
