@@ -1,6 +1,6 @@
 # do_billing_history-notify
 
-![スクリーンショット 2024-01-20 22 58 31](https://github.com/RVIRUS0817/do_billing_history-notify/assets/5633085/8046c605-3380-495d-8aec-d7f3034dbd52)
+![スクリーンショット 2024-01-20 22 58 31](https://github.com/RVIRUS0817/do_billing_history-notify/assets/5633085/c47f014b-9184-4d8a-815d-5a6b96e2e223)
 
 ## Setting
 - DigitalOcean
@@ -13,4 +13,4 @@
 
 ## Blog
 
-- https://blog.adachin.me/archives/51680
+- https://blog.adachin.me/archives/51679
