@@ -143,7 +143,7 @@ func createSlackMessage(invoice *Invoice, items []InvoiceItem) string {
 	sort.Strings(products)
 
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("https://do.co/3rn92ce\n・ %s\n・ $%s\n\n内訳:", invoice.InvoicePeriod, invoice.Amount))
+	sb.WriteString(fmt.Sprintf("https://do.co/3rn92ce\n・ %s\n・ $%s\n\n breakdown:", invoice.InvoicePeriod, invoice.Amount))
 	for _, p := range products {
 		sb.WriteString(fmt.Sprintf("\n  - %s: $%.2f", p, productTotals[p]))
 	}
