@@ -1,16 +1,12 @@
 # do_billing_history-notify
 
-![スクリーンショット 2024-01-20 22 58 31](https://github.com/RVIRUS0817/do_billing_history-notify/assets/5633085/c47f014b-9184-4d8a-815d-5a6b96e2e223)
+<img width="505" height="450" alt="Image" src="https://github.com/user-attachments/assets/cb586500-8fc3-435a-b870-fe687c7d7e46" />
 
 ## Setting
 - DigitalOcean
 - Slack Webhook
-- Go v1.21.6
-- CircleCI
+- Go v1.26.2
+- GitHub Actions
   - Environment
     - DO_TOKEN
 	- SLACK_URL
-
-## Blog
-
-- https://blog.adachin.me/archives/51679

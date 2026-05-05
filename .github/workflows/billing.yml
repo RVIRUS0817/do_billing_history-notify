@@ -1,0 +1,26 @@
+name: Billing Run
+
+on:
+  schedule:
+    - cron: "0 0 2 * *"
+  workflow_dispatch:
+
+jobs:
+  billing_run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.2"
+      - name: DigitalOcean billing_run
+        env:
+          DO_TOKEN: ${{ secrets.DO_TOKEN }}
+          SLACK_URL: ${{ secrets.SLACK_URL }}
+        run: go run .
+      - name: Slack notify fail
+        if: failure()
+        run: |
+          curl -s -X POST -H 'Content-type: application/json' \
+            --data '{"text":"billing_run failed :x:"}' \
+            "${{ secrets.SLACK_URL }}"
